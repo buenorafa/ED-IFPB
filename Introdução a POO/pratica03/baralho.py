@@ -19,6 +19,7 @@ class Baralho():
         return self.cartas.pop()
 
     # Classe idealizada na aula, mas não é necessária para este exercício
+    # TIRAR OS PRINTS DESSE METODO
     def adiciona_carta(self, numero: str, naipe: str) -> None:
         mensagem = ''
         if (numero in self.NUMEROS and naipe in self.NAIPES):

@@ -27,3 +27,12 @@ class Carta():
 
     def __str__(self):
         return f"{self.numero} de {self.naipe}"
+
+    # # METODOS GET E SET PYTHON
+    #   ESTUDAR ESSE PROPERTY
+    # @property
+    # def pontos(self):
+    #     return self.pontos
+    # @pontos.setter
+    # def pontos(self, novaPontuacao):
+    #     self.pontos = novaPontuacao
