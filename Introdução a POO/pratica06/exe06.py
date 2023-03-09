@@ -115,21 +115,87 @@ class País():
     def __str__(self) -> str:
         return f'País: {self.__nome}\nCapital: {self.__capital}\nDimensão: {self.__dimensao} km2\nPaíses na fronteira: {self.__fronteira}'
 
+# # TESTE
+# # a)
+# br = País('Brasil', 'Brasília', 8516000)
+# # b)
+# print(f'Nome: {br.getNome()}')
+# print(f'Capital: {br.getCapital()}')
+# print(f'Dimensão: {br.getDimensao()} km2')
+# print('Fronteira: ' + br.getFronteira())
+# # d)
+# br.adicionaNaFronteira('Uruguai')
+# br.adicionaNaFronteira('Colômbia')
+# br.adicionaNaFronteira('Paraguai')
+# # c)
+# print(br.getFronteira())
+# # e)
+# print(br)
 
-# TESTE
-# a)
-br = País('Brasil', 'Brasília', 8516000)
-# b)
-print(f'Nome: {br.getNome}')
-print(f'Capital: {br.getCapital}')
-print(f'Dimensão: {br.getDimensao} km2')
-print()
-print(br.getFronteira)
-# d)
-br.adicionaNaFronteira('Uruguai')
-br.adicionaNaFronteira('Colômbia')
-br.adicionaNaFronteira('Paraguai')
-# c)
-print(br.getFronteira)
-# e)
-print(br)
+
+class ContaCorrente():
+    def __init__(self, numero: str, nome: str, saldo: int = 0) -> None:
+        self.__conta = numero
+        self.__titular = nome
+        self.__saldo = saldo
+
+    def getConta(self) -> str:
+        return self.__conta
+
+    def getTitular(self) -> str:
+        return self.__titular
+
+    def depositar(self, valor) -> None:
+        self.__saldo += valor
+
+    def sacar(self, valor) -> bool:
+        if valor > self.__saldo:
+            return False
+        return True
+
+    def __str__(self) -> str:
+        return f'R$ {self.__saldo:.2f}'
+
+
+# # TESTE
+# contas = []
+# for i in range(2):
+#     print(f'Cadastro do usuário #{i+1}:\n\n')
+#     cc = input('Digite o numero da conta: ')
+#     nome = input('Digite o nome do titular: ')
+#     saldo = float(input('Digite o saldo: '))
+#     print()
+#     contas.append(ContaCorrente(cc, nome, saldo))
+
+# while True:
+#     print('''
+# Opções disponíveis:
+
+# 1 - Depositar
+# 2 - Sacar
+# 3 - Saldo
+# 4 - Sair
+
+#     ''')
+#     op = input('Digite o sua opção: ')
+#     if op == '1':
+#         cc = input('\nDigite o numero da conta: ')
+#         for i in contas:
+#             if cc == i.getConta():
+#                 valor = float(input('\nDigite o valor a ser depositado: '))
+#                 i.depositar(valor)
+#     elif op == '2':
+#         cc = input('\nDigite o numero da conta: ')
+#         v_saque = float(input('\nDigite o valor do saque: '))
+#         for i in contas:
+#             if cc == i.getConta():
+#                 status = i.sacar(v_saque)
+#                 print('\nSaque realizado com sucesso!') if status else print(
+#                     '\nSaldo insuficiente.')
+#     elif op == '3':
+#         cc = input('\nDigite o numero da conta: ')
+#         for i in contas:
+#             if cc == i.getConta():
+#                 print(f'\n{i.getTitular()}\t-\t{i.getConta}\n\n\n{i}')
+#     elif op == '4':
+#         break
