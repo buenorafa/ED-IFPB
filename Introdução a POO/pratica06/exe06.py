@@ -68,19 +68,20 @@ class Aluno():
     def __str__(self) -> str:
         return f'{self.nome} - {self.matricula}'
 
-# # TESTE
-# # b)
-# aluno = Aluno('Rafael', 20230101, [10, 10,])
-# print(aluno)
-# # e)
-# aluno.nome = 'Rafael Limeira'
-# # c)
-# print(aluno.nome)
-# print(aluno.matricula)
-# # f)
-# aluno.adiciona_nota(10)
-# # d)
-# print(f'Média: {aluno.media()}')
+
+# TESTE
+# b)
+aluno = Aluno('Rafael', 20230101, [10, 10,])
+print(aluno)
+# e)
+aluno.nome = 'Rafael Limeira'
+# c)
+print(aluno.nome)
+print(aluno.matricula)
+# f)
+aluno.adiciona_nota(10)
+# d)
+print(f'Média: {aluno.media()}')
 
 
 # 3.
