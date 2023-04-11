@@ -47,22 +47,22 @@ class Fila:
 
 
 # TESTES:
-fila = Fila()
-fila.adiciona('#1')
-fila.adiciona('#2')
-fila.adiciona('#3')
-fila.adiciona('#4')
+# fila = Fila()
+# fila.adiciona('#1')
+# fila.adiciona('#2')
+# fila.adiciona('#3')
+# fila.adiciona('#4')
 
-print(fila)
+# print(fila)
 
-fila.remove()
-fila.remove()
-fila.remove()
-print(fila.remove())
+# fila.remove()
+# fila.remove()
+# fila.remove()
+# print(fila.remove())
 
-print(fila)
+# print(fila)
 
-try:
-    fila.remove()
-except FilaException as fe:
-    print(fe)
+# try:
+#     fila.remove()
+# except FilaException as fe:
+#     print(fe)
