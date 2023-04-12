@@ -196,7 +196,8 @@ class Pilha:
 # print(p1)
 
 # Esvazia já tem
-# Obtem a base
-p1 = Pilha()
-p1.empilha(';-;')
-print(p1.obtemBase())
+
+# # Obtem a base
+# p1 = Pilha()
+# p1.empilha(';-;')
+# print(p1.obtemBase())
