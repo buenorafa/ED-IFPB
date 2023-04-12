@@ -25,33 +25,33 @@ class No:
 
 class Head:
     def __init__(self) -> None:
-        self.__inicio = None
+        self.__frente = None
         self.__final = None
-        self.__tamanho = 0
+        self.__tam = 0
 
     @property
-    def inicio(self):
-        return self.__inicio
+    def frente(self):
+        return self.__frente
 
-    @inicio.setter
-    def inicio(self, novoNo):
-        self.__inicio = novoNo
+    @frente.setter
+    def frente(self, novoNo):
+        self.__frente = novoNo
 
     @property
     def final(self):
         return self.__final
 
-    @inicio.setter
+    @final.setter
     def final(self, novoNo):
         self.__final = novoNo
 
     @property
-    def tamanho(self):
-        return self.__tamanho
+    def tam(self):
+        return self.__tam
 
-    @tamanho.setter
-    def tamanho(self, novoTamanho):
-        self.__tamanho = novoTamanho
+    @tam.setter
+    def tam(self, novoTamanho):
+        self.__tam = novoTamanho
 
 
 class FilaException(Exception):
@@ -64,46 +64,38 @@ class Fila:
         self.__head = Head()
 
     def estaVazia(self):
-        return self.__head.tamanho == 0
+        return self.__head.tam == 0
 
-    def adiciona(self, value):
+    def enfileira(self, value):
         novoNo = No(value)
         if self.estaVazia():
-            self.__head.inicio = self.__head.final = novoNo
+            self.__head.frente = novoNo
+            self.__head.final = novoNo
         else:
             self.__head.final.prox = novoNo
             self.__head.final = novoNo
-        self.__head.tamanho += 1
+        self.__head.tam += 1
 
-    def remove(self):
+    def desenfileira(self):
         if self.estaVazia():
             raise FilaException('A fila está fazia.')
-        elemento = self.__head.inicio.carga
-        if self.__head.tamanho == 1:
+        elemento = self.__head.frente.carga
+        if self.__head.tam == 1:
             self.__head.final = None
-        self.__head.inicio = self.__head.inicio.prox
-        self.__head.tamanho -= 1
+        self.__head.frente = self.__head.frente.prox
+        self.__head.tam -= 1
         return elemento
 
     def __len__(self):
-        return self.__head.tamanho
+        return self.__head.tam
 
     def __str__(self) -> str:
-        res = 'inicio -> ['
-        cursor = self.__head.inicio
-        while cursor != None:
+        res = 'frente -> ['
+        cursor = self.__head.frente
+        while (cursor != None):
             res += f'{cursor.carga}'
             if cursor.prox != None:
                 res += ', '
             cursor = cursor.prox
         res += '] <- fim'
         return res
-
-
-# Teste
-f1 = Fila()
-f1.adiciona(1)
-f1.adiciona(2)
-print(f1)
-print(f1.remove())
-print(f1.remove())
