@@ -33,9 +33,6 @@ class Pilha:
         self.__topo -= 1
         self.__tamanho -= 1
         return elem
-    
-    def concatena(self, pilha):
-        
 
     def __len__(self):
         return self.__tamanho
