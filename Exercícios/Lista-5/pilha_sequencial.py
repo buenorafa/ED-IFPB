@@ -34,6 +34,20 @@ class Pilha:
         self.__tamanho -= 1
         return elem
 
+    # O elemento 1 deve ser o topo da pilha
+    def elemento(self, num):
+        if num > self.__tamanho:
+            raise PilhaException(
+                f'A pilha possui só {self.__tamanho} elementos.')
+        contador = self.__tamanho
+        return self.__pilha[contador - num]
+
+    def busca(self, carga):
+        for i in range(self.__tamanho):
+            if carga == self.__pilha[i]:
+                return self.__tamanho - i
+        raise PilhaException('O elemento não está na pilha.')
+
     def __len__(self):
         return self.__tamanho
 
@@ -43,7 +57,7 @@ class Pilha:
             res += f'{self.__pilha[i]}'
             if i < self.__tamanho - 1:
                 res += ', '
-        res += '] <- pilha'
+        res += '] <- topo'
         return res
     # Métodos necessários p/ exe.05
 
@@ -75,17 +89,16 @@ class Pilha:
         for j in range(tamanho):
             self.empilha(pilha_aux.desempilha())
 
-
 # TESTE
-p1 = Pilha()
-p2 = Pilha()
-for i in range(5):
-    p1.empilha(i+1)
-    p2.empilha((i+1)*10)
-print(p1)
-print(p2)
-p1.concatena(p2)
-print(p1)
+# p1 = Pilha()
+# p2 = Pilha()
+# for i in range(5):
+#     p1.empilha(i+1)
+#     p2.empilha((i+1)*10)
+# print(p2)
+# p1.concatena(p2)
+# print(p1)
+
 # Inverte a ordem
 # p1.inverteOrdem()
 # print(p1)
@@ -96,3 +109,21 @@ print(p1)
 # except PilhaException as pe:
 #     print(pe)
 # print(p1)
+
+# # Elemento
+# p1 = Pilha()
+# for i in range(5):
+#     p1.empilha(i+1)
+# try:
+#     print(p1.elemento(10))
+# except PilhaException as pe:
+#     print(pe)
+
+# # Busca
+# p1 = Pilha()
+# for i in range(5):
+#     p1.empilha(i+1)
+# try:
+#     print(p1.busca(5))
+# except PilhaException as pe:
+#     print(pe)

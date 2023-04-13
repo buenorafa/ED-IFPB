@@ -154,12 +154,12 @@ class Fila:
 
 # Testes
 
-f1 = Fila()
-f1.enfileira(1)
-f1.enfileira('Oi')
-f1.enfileira(':P')
-f1.enfileira(':)')
-print(f1)
+# f1 = Fila()
+# f1.enfileira(1)
+# f1.enfileira('Oi')
+# f1.enfileira(':P')
+# f1.enfileira(':)')
+# print(f1)
 
 # # Encontra elemento
 # print(f1.elemento(1))
@@ -168,16 +168,16 @@ print(f1)
 # print(f1.busca('Faz o L'))
 # print(f1.busca('Oi'))
 
-# Combina método de classe
-f2 = Fila()
-f2.enfileira(2)
-f2.enfileira('Tchau')
-f_res = Fila()
-f_res.enfileira(1)
-Fila.combina(f_res, f1, f2)
-print(f_res)
-print(f1)
-print(f2)
+# # Combina método de classe
+# f2 = Fila()
+# f2.enfileira(2)
+# f2.enfileira('Tchau')
+# f_res = Fila()
+# f_res.enfileira(1)
+# Fila.combina(f_res, f1, f2)
+# print(f_res)
+# print(f1)
+# print(f2)
 
 # # Clinica médica
 # fila_de_espera = Fila()

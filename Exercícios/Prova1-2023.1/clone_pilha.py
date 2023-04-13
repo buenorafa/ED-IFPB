@@ -50,9 +50,9 @@ class Pilha:
     # Implementar
 
     def elemento(self, posicao: int) -> any:
-        # if posicao <= 0 or posicao > self.__tamanho:
-        #     raise PilhaException(
-        #         f"Posicao invalida. A pilha so tem {self.__tamanho} elementos.")
+        if posicao <= 0 or posicao > self.__tamanho:
+            raise PilhaException(
+                f"Posicao invalida. A pilha so tem {self.__tamanho} elementos.")
         contador = 1
         cursor = self.__topo
         while (cursor != None):
@@ -92,7 +92,8 @@ class Pilha:
         return res
 
 
-# # Teste
+# Testes
+# # Clone
 # p1 = Pilha()
 # for i in range(5):
 #     p1.empilha(i+1)
