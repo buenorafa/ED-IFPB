@@ -34,7 +34,7 @@ class Pilha:
         self.__tamanho -= 1
         return elem
 
-    # O elemento 1 deve ser o topo da pilha
+    # O elemento 1 deve ser o topo da pilha (Como na implementação da pilha encadeada)
     def elemento(self, num):
         if num > self.__tamanho:
             raise PilhaException(

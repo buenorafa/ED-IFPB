@@ -1,3 +1,4 @@
+# Função para inverter cada palavra em uma frase, sem mudar a ordem das palavras
 class No:
     # Metodo construtor
     def __init__(self, carga) -> None:
@@ -23,11 +24,6 @@ class No:
         return str(self.__carga)
 
 
-class PilhaException(Exception):
-    def __init__(self, mensagem) -> None:
-        super().__init__(mensagem)
-
-
 class Pilha:
     def __init__(self) -> None:
         self.__topo = None
@@ -47,35 +43,6 @@ class Pilha:
         self.__topo = self.__topo.prox
         self.__tamanho -= 1
         return elemento
-    # Implementar
-
-    def elemento(self, posicao: int) -> any:
-        if posicao <= 0 or posicao > self.__tamanho:
-            raise PilhaException(
-                f"Posicao invalida. A pilha so tem {self.__tamanho} elementos.")
-        contador = 1
-        cursor = self.__topo
-        while (cursor != None):
-            if contador == posicao:
-                return cursor.carga
-            cursor = cursor.prox
-            contador += 1
-
-    def busca(self, key: any) -> int:
-        contador = 1
-        cursor = self.__topo
-        while (cursor != None):
-            if key == cursor.carga:
-                return contador
-            cursor = cursor.proxprox
-            contador += 1
-        raise PilhaException(f"A chave {key} não está na pilha.")
-
-    def clone(self) -> 'Pilha':
-        p_res = Pilha()
-        for i in range(self.__tamanho, 0, -1):
-            p_res.empilha(self.elemento(i))
-        return p_res
 
     def __len__(self):
         return self.__tamanho
@@ -91,14 +58,42 @@ class Pilha:
         res += ']'
         return res
 
+# Q2:
+# Como eu fiz, o probleme é que a última palavra fica salva na pilha e não é gravada no resultado
 
-# Testes
-# # Clone
-# p1 = Pilha()
-# for i in range(5):
-#     p1.empilha(i+1)
-# print(f'P1: {p1}')
-# p2 = p1.clone()
-# print(f'P2: {p2}')
-# p2.desempilha()
-# print(f'P2: {p2}')
+# def reverseWords(frase) -> str:
+#     pilha = Pilha()
+#     resultado = ''
+#     for i in frase:
+#         if i != ' ':
+#             pilha.empilha(i)
+#         else:
+#             if not pilha.estaVazia():
+#                 for j in range(len(pilha)):
+#                     resultado += str(pilha.desempilha())
+#             resultado += ' '
+#     return resultado
+
+
+# Como eu deveria ter feito
+def reverseWords(frase) -> str:
+    pilha = Pilha()
+    resultado = ''
+    for i in frase:
+        if i != ' ':
+            pilha.empilha(i)
+        else:
+            if not pilha.estaVazia():
+                for j in range(len(pilha)):
+                    resultado += str(pilha.desempilha())
+            resultado += ' '
+    # Aqui eu verificaria se não tinha ficado nada na pilha
+    if not pilha.estaVazia():
+        for j in range(len(pilha)):
+            resultado += str(pilha.desempilha())
+    return resultado
+
+
+# Teste
+# reverseWords('Eu amo lola')
+print(reverseWords('Eu amo lola!'))
