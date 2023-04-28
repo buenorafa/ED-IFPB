@@ -3,6 +3,7 @@
 class No:
     # Metodo construtor
     def __init__(self, carga) -> None:
+        #
         self.__carga = carga
         self.__prox = None
 
@@ -23,6 +24,10 @@ class No:
 
     def __str__(self) -> str:
         return str(self.__carga)
+
+# no1 = No('Rafael')
+# no2 = No('Danillo')
+# no1.prox = no2
 
 
 class Head:
@@ -55,47 +60,42 @@ class Head:
     def tam(self, novoTamanho):
         self.__tam = novoTamanho
 
+
 class FilaException(Exception):
     def __init__(self, mensagem):
         super().__init__(mensagem)
+# FIFO: Primeiro a entrar é o primeiro a sair
+
 
 class Fila:
     def __init__(self) -> None:
         self.__head = Head()
+        # frente, final e tamanho
 
-    def estaVazia(self) -> bool:
+    def estaVazia(self):
         return self.__head.tam == 0
 
     def enfileira(self, value):
-        novoNo = No(value) #Prox None
+        novoNo = No(value)
         if self.estaVazia():
-            # Tamanho 0, Frente e Final = None
             self.__head.frente = novoNo
             self.__head.final = novoNo
         else:
-            # Final.Próximo = None
             self.__head.final.prox = novoNo
-            # Final.Próximo = novoNó
-            self.__head.final = novoNo #prox = none
-            #Final = novoNó 
+            self.__head.final = novoNo
         self.__head.tam += 1
 
- 
     def desenfileira(self):
-        # Verifica se ta vazio
         if self.estaVazia():
             raise FilaException('A fila está fazia.')
-        # Salva o carga do nó que está na frenta fila
-        elemento = self.__head.frente.carga 
-        # Verifica se o tamanho = 1
+        elemento = self.__head.frente.carga
         if self.__head.tam == 1:
             self.__head.final = None
-        # A frente da fila passa a ser o que ta depois dela
         self.__head.frente = self.__head.frente.prox
         self.__head.tam -= 1
         return elemento
 
-    def __len__(self) -> int:
+    def __len__(self):
         return self.__head.tam
 
     def __str__(self) -> str:
@@ -108,27 +108,29 @@ class Fila:
             cursor = cursor.prox
         res += '] <- fim'
         return res
-    
-    # def esvaziar(self, limiar):
-    #     if not self.estaVazia():
-    #         tamanho = self.__head.tam
-    #         cursor = self.__head.frente
-    #         somatorio = 0
-    #         for i in range(tamanho):
-    #             somatorio += cursor.carga
-    #             cursor = cursor.prox
-    #         if somatorio < limiar:
-    #             self.__head.frente = self.__head.final = None
-    #             somatorio = 0
-    #             return True
-    #     return False
 
-if __name__ == '__main__':
-    # # Teste
-    f1 = Fila()
-    for i in range(5):
-        f1.enfileira(i+1)
-    print(f1)
-    # print(f1.esvaziar(15))  # False
-    # print(f1)
-    
+    # Q1 : Método que se a soma das cargas da fila for menor limiar (param), esvazia a fila inteira
+    def esvaziar(self, limiar) -> bool:
+      if self.estaVazia():
+        raise FilaException('A fila já está fazia.')
+      # Pegar a soma de todos elementos
+      soma = 0
+      cursor = self.__head.frente  #primeiro nó
+      while (cursor != None):
+        soma += cursor.carga
+        cursor = cursor.prox
+      # Soma < limiar
+      if soma < limiar:
+        self.__head.frente = None
+        self.__head.final = None
+        self.__head.tam = 0
+        return True
+      return False
+  
+
+fila = Fila()
+fila.enfileira(10)
+fila.enfileira(10)
+fila.enfileira(10)
+# metodo esvaziar  e desenfilera -> a fila tá vazia
+print(fila.esvaziar(50)) # Deve retornar True, pois o limiar é maior que a soma dos elementos
