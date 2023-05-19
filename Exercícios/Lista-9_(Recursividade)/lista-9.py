@@ -133,20 +133,87 @@ def dectobin(num: int) -> str:
 # Q.10 Elemento radioativo que tem meia vida de 50segundo, receber massa em gramas e calcular qto tempo leva p decair até 0.8
 
 
-# def invictusRec(massa: float) -> int:
-#     if massa < 0.8:
-#         return 0
-#     else:
-#         return 50 + invictusRec(massa / 2)
+def invictusRec(massa: float) -> int:
+    if massa < 0.8:
+        return massa, 0
+    else:
+        t = invictusRec(massa / 2)
+        return t[0], t[1] + 50
+
 
 # Apenas para correção
 
-# def invictusIterativo(massa):
-#     tempo = 0
-#     while massa >= 0.8:
-#         tempo += 50
-#         massa = massa / 2
-#     return tempo
+
+def invictusIterativo(massa):
+    tempo = 0
+    while massa >= 0.8:
+        tempo += 50
+        massa = massa / 2
+    return massa, tempo
+
 
 # print(invictusIterativo(10))
 # print(invictusRec(10))
+
+
+# Q.11 Calcular 1/1 ... 1/n até n
+def seqTermos1(num):
+    if num == 1:
+        return 1
+    else:
+        return 1 / num + seqTermos1(num - 1)
+
+
+# print(seqTermos1(3))
+
+
+# Q.12 (nˆ2 + 1)/(n+3) até 1
+def seqTermos2(num):
+    if num == 1:
+        return 2 / 4
+    else:
+        return (num**2 + 1) / (num + 3) + seqTermos2(num - 1)
+
+
+# print(seqTermos2(2))
+
+
+# Q.13 Soma de um vetor de num reais
+def somaVec(lista: list) -> float:
+    if len(lista) == 1:
+        return lista[0]
+    else:
+        return lista[0] + somaVec(lista[1:])
+
+
+# print(somaVec([1.5, 2.5, 3]))
+
+
+# Q.14 Encontrar o maior valor em um vetor
+def maior(lista: list):
+    if len(lista) == 1:
+        return lista[0]
+    else:
+        if lista[0] < lista[-1]:
+            lista = lista[1:]
+        else:
+            lista = lista[:-1]
+        return maior(lista)
+
+
+# print(maior([1, 50, 50, 4]))
+
+
+# Q.15 Verificar se o vetor está em ordem crescente
+def ordenado(lista: list):
+    if len(lista) < 2:
+        return True
+    else:
+        if lista[0] < lista[1]:
+            return ordenado(lista[1:])
+        else:
+            return False
+
+
+# print(ordenado([1, 2, 3]))
+# print(ordenado([1, 4, 3]))
