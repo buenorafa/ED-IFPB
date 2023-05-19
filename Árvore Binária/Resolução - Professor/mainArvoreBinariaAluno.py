@@ -1,0 +1,32 @@
+from ArvoreBinariaSemImplementacao import ArvoreBinaria
+from Aluno import Aluno
+
+arv = ArvoreBinaria(Aluno(1,'vitor',10.0))
+arv.addEsq(Aluno(2,'rafael',10.0))
+arv.addDir(Aluno(3,'jessye',10.0))
+arv.descerEsquerda()
+print('Cursor: ', arv.getCursor())
+arv.addDir(Aluno(4,'lavinia',10.0))
+arv.descerDireita()
+print('Cursor: ', arv.getCursor())
+arv.addEsq(Aluno(5,'venilson',10.0))
+arv.addDir(Aluno(6,'pedro',10.0))
+arv.resetCursor()
+arv.descerDireita()
+print('Cursor: ', arv.getCursor())
+arv.addDir(Aluno(7,'gabriel',10.0))
+arv.descerDireita()
+print('Cursor: ', arv.getCursor())
+arv.addEsq(Aluno(8,'heitor',10.0))
+
+chave = Aluno(7,'',0.0)
+print('Busca:', arv.busca( chave ))
+
+arv.preordem()
+print()
+arv.emordem()
+print()
+arv.posordem()
+#print(arv.__dict__)
+print()
+print(arv.go(chave))
