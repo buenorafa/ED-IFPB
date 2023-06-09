@@ -121,8 +121,16 @@ class Arvore:
             return True
         return False
 
-    # Exibe a árvore
+    """
+        Perceba que a partir desta linha temos métodos com mesmo nome públicos e um privados, essa abordagem é utilizada pois os privados precisam usar os nós para percorrer a árvore. 
 
+        Por exemplo, o método de busca tem apenas um parâmetro, o valor a ser procurado, porém é necessário percorrer árvore a partir da raiz até os nós folhas para saber se esse valor está ou não na árvore.
+
+        Métodos público: O que o usuário quer acessar.
+        Métodos privados: O ponto de partida desse método na árvore. 
+    """
+
+    # Exibe a árvore
     def preordem(self):
         self.__preordem(self.raiz)
 
@@ -150,15 +158,42 @@ class Arvore:
             print(f"{no.carga}", end=" ")
             self.__emordem(no.dir)
 
-    # TODO Criar um método recursivo para retornar o tamanho
-    def __len__(self):
-        return self.tamanho
+    # Método recursivo para retornar o tamanho
+    def __tamanho(self, no: No) -> int:
+        """
+        Com este método recursivo é possível eliminar o atributo tamanho da árvore.
 
-    # Busca
+        E funciona da seguinte forma:
+        Quando o nó checado for vazio ele retorna 0, se não for vazio retorna 1 e chama o método para seu filho esquerdo e direito.
+        """
+        if no is None:
+            return 0
+        return 1 + (self.__tamanho(no.esq) + self.__tamanho(no.dir))
+
+    def __len__(self):
+        return self.__tamanho(self.raiz)
+
+    # Utilizando o atributo tamanho
+    # def __len__(self):
+    #     return self.tamanho
+
+    """
+        O método de busca serve para procurar um elemento na árvore, a partir de uma carga (chave), e retornar um booleano. 
+        
+    """
+
     def busca(self, chave: any) -> bool:
         return self.__busca(chave, self.raiz)
 
     def __busca(self, chave: any, no: "No"):
+        """
+        Caso 1: Nós vazios não possuem filhos, então retornamos falso.
+        Caso 2: Encontramos a chave, retorna True
+        Se não está neste nó, pode estar no lado esquerdo ou direito.
+        Caso 3: Verificamos do lado esquerdo e a chave foi encontrada, retorna True
+        Caso 4: Se não, retorne o que tiver no lado direito.
+
+        """
         if no is None:
             return False
         if chave == no.carga:
@@ -168,7 +203,6 @@ class Arvore:
         else:
             return self.__busca(chave, no.dir)
 
-    # Go
     def go(self, chave: any):
         no = self.__go(chave, self.raiz)
         if no is not None:
@@ -177,6 +211,15 @@ class Arvore:
             return None
 
     def __go(self, chave, no: "No"):
+        """
+        O Go é parecido com a busca
+
+        Caso 1: Se o nó for None, eu (a função recursiva 🤪) não tenho mais para onde ir, então retorno None.
+        Caso 2: A chave procurada é igual a carga do nó, é retornado o nó.
+
+        Se a chave não foi encontrada e o nó não é None, a chave pode estar do lado esquerdo ou do lado direito.
+        Caso 3: Chamo novamente a função recursiva para o lado esquerdo e salvo em uma variável chamada recuperado, que pode ser None ou o nó (caso a chave seja encontrada). Se a chave for encontrada a função retorna o nó, se não retornamos o que tiver do lado direito.
+        """
         if no is None:
             return None
         if chave == no.carga:
@@ -186,3 +229,7 @@ class Arvore:
             return recuperado
         else:
             return self.__go(chave, no.dir)
+
+
+arv = Arvore(100)
+print(len(arv))
