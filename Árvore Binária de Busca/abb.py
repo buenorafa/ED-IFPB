@@ -65,7 +65,7 @@ class ABB:
     def remove(self, valor):
         carga = self.go(valor)
         if carga is not None:
-            self.__remove(valor, self.raiz)
+            self.raiz = self.__remove(valor, self.raiz)
             return carga
         else:
             return None
@@ -93,7 +93,7 @@ class ABB:
             elif no.dir is None:  # Apenas o esquerdo
                 temp = no.esq
                 no = None
-                return no
+                return temp
             # 3. Quando tem dois filhos: 🫠
             # salva o menor valor do lado direito (menor dos maiores 😅)
             temp = self.__min(no.dir)
@@ -166,10 +166,14 @@ class ABB:
 
 # Testes
 
-# arv = ABB(10)
-# arv.insere(1)
-# arv.insere(100)
+arv = ABB(10)
+arv.insere(5)
+arv.insere(15)
+arv.insere(25)
+arv.insere(0)
 
-# arv.remove(1)
 
-# arv.emordem()
+arv.remove(10)
+
+
+arv.emordem()
